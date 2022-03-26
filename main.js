@@ -34,10 +34,10 @@ recognition.onresult = function(event) {
 }
 
 function setup() {
- screen_width = window.innerWidth();
- screen_height = window.innerHeight();
+ screen_width = window.innerWidth;
+ screen_height = window.innerHeight;
  canvas = createCanvas(screen_width, screen_height-150);
- canvas.position();
+ canvas.position(0, 150);
 }
 function preload() {
     apul = loadImage("apple.png");
@@ -46,22 +46,31 @@ function preload() {
 function draw() {
   if(draw_apple == "set")
   {
+    
+ 
+    for (var i = 1;i <= to_number; i++){
+      x = Math.floor(Math.random() * 700);
+      y = Math.floor(Math.random() * 400);
+      image(apul, x , y , 50,50);
+    }
+    
+  
     document.getElementById("status").innerHTML = to_number + " Apples drawn";
+    speak_data = to_number + " Apples drawn";
+    speak();
     draw_apple = "";
     }
-    for (i = 1;
-      x = Math.floor(Math.random() * 700);
-      y = Math.floor(Math.random() * 400)
-    ) 
  
 }
 
 function speak(){
-    var synth = window.speechSynthesis;
 
-    var utterThis = new SpeechSynthesisUtterance(speak_data);
+  var synth = window.speechSynthesis;
 
-    synth.speak(utterThis);
 
-    speak_data = "";
+  var utterThis = new SpeechSynthesisUtterance(speak_data);
+
+  synth.speak(utterThis);
+
+ speak_data = "";
 }
